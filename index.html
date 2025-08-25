@@ -270,6 +270,92 @@
             border-radius: 5px;
             border-left: 4px solid #ffd700;
         }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .input-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .list-input {
+                padding: 15px;
+            }
+            
+            .list-input textarea {
+                height: 250px;
+                font-size: 16px;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 8px 4px;
+            }
+            
+            .spin-btn {
+                padding: 12px 25px;
+                font-size: 16px;
+                margin: 8px;
+            }
+            
+            .winner-announcement {
+                margin: 15px 0;
+                padding: 15px;
+            }
+            
+            .winner-text {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .list-input textarea {
+                height: 200px;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 6px 2px;
+            }
+            
+            .spin-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+                width: 90%;
+                max-width: 300px;
+            }
+            
+            .probability-bar {
+                margin: 4px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -417,12 +503,12 @@ AnotherPlayer
             drawCount = 0;
             
             const randomHTML = `
-                <div style="margin-top: 30px; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-                    <h2 style="color: white; margin-bottom: 10px; font-size: 2.5em; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🎲 Weighted Random Draw</h2>
-                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 1.1em;">Higher points = higher chance to win!</p>
+                <div style="margin-top: 30px; padding: clamp(20px, 5vw, 40px); background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                    <h2 style="color: white; margin-bottom: 10px; font-size: clamp(1.5rem, 4vw, 2.5rem); text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🎲 Weighted Random Draw</h2>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: clamp(0.9rem, 2.5vw, 1.1rem);">Higher points = higher chance to win!</p>
                     
-                    <div style="max-width: 500px; margin: 0 auto 20px; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px;">
-                        <h3 style="color: white; margin-bottom: 10px; font-size: 1.1em;">Win Probabilities</h3>
+                    <div style="max-width: min(500px, 90vw); margin: 0 auto 20px; background: rgba(255,255,255,0.1); border-radius: 12px; padding: clamp(10px, 3vw, 15px);">
+                        <h3 style="color: white; margin-bottom: 10px; font-size: clamp(1rem, 2.5vw, 1.1rem);">Win Probabilities</h3>
                         <div id="probabilityBars" style="max-height: 200px; overflow-y: auto;">
                             ${createProbabilityBars(players)}
                         </div>
@@ -436,11 +522,11 @@ AnotherPlayer
                         </div>
                     </div>
                     
-                    <div style="margin-top: 30px;">
-                        <button id="drawBtn" onclick="drawWinner()" style="background: linear-gradient(45deg, #ff4757, #ff6b7a); color: white; border: none; padding: 20px 50px; font-size: 24px; font-weight: bold; border-radius: 50px; cursor: pointer; margin: 10px; box-shadow: 0 10px 30px rgba(255, 71, 87, 0.4); transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;">
+                    <div style="margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+                        <button id="drawBtn" onclick="drawWinner()" style="background: linear-gradient(45deg, #ff4757, #ff6b7a); color: white; border: none; padding: clamp(15px, 3vw, 20px) clamp(30px, 6vw, 50px); font-size: clamp(16px, 3vw, 24px); font-weight: bold; border-radius: 50px; cursor: pointer; box-shadow: 0 10px 30px rgba(255, 71, 87, 0.4); transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px; min-width: 200px;">
                             🎯 DRAW WINNER
                         </button>
-                        <button onclick="resetDraw()" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid rgba(255,255,255,0.3); padding: 15px 30px; border-radius: 50px; cursor: pointer; margin: 10px; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+                        <button onclick="resetDraw()" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid rgba(255,255,255,0.3); padding: clamp(12px, 2.5vw, 15px) clamp(20px, 4vw, 30px); border-radius: 50px; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.3s ease; min-width: 100px;">
                             Reset
                         </button>
                     </div>
@@ -466,14 +552,14 @@ AnotherPlayer
                 const color = colors[index % colors.length];
                 
                 return `
-                    <div style="display: flex; align-items: center; margin: 8px 0; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 8px;">
-                        <div style="flex: 1; text-align: left; color: white; font-weight: bold; min-width: 120px;">${player.name}</div>
-                        <div style="flex: 2; margin: 0 10px;">
-                            <div style="background: rgba(255,255,255,0.2); height: 20px; border-radius: 10px; overflow: hidden;">
+                    <div style="display: flex; align-items: center; margin: 4px 0; background: rgba(255,255,255,0.1); border-radius: 8px; padding: clamp(6px, 2vw, 8px); font-size: clamp(0.8rem, 2vw, 1rem);">
+                        <div style="flex: 1; text-align: left; color: white; font-weight: bold; min-width: clamp(80px, 20vw, 120px); word-break: break-word;">${player.name}</div>
+                        <div style="flex: 2; margin: 0 clamp(5px, 2vw, 10px);">
+                            <div style="background: rgba(255,255,255,0.2); height: clamp(16px, 3vw, 20px); border-radius: 10px; overflow: hidden;">
                                 <div style="height: 100%; background: ${color}; width: ${probability}%; transition: width 0.5s ease; border-radius: 10px;"></div>
                             </div>
                         </div>
-                        <div style="min-width: 80px; text-align: right; color: white; font-weight: bold;">${player.total} pts (${probability}%)</div>
+                        <div style="min-width: clamp(60px, 15vw, 80px); text-align: right; color: white; font-weight: bold; font-size: clamp(0.7rem, 1.5vw, 0.9rem);">${probability}%</div>
                     </div>
                 `;
             }).join('');
@@ -582,14 +668,14 @@ AnotherPlayer
                 const color = colors[index % colors.length];
                 
                 return `
-                    <div style="display: flex; align-items: center; margin: 8px 0; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 8px;">
-                        <div style="flex: 1; text-align: left; color: white; font-weight: bold; min-width: 120px;">${player.name}</div>
-                        <div style="flex: 2; margin: 0 10px;">
-                            <div style="background: rgba(255,255,255,0.2); height: 20px; border-radius: 10px; overflow: hidden;">
+                    <div style="display: flex; align-items: center; margin: 4px 0; background: rgba(255,255,255,0.1); border-radius: 8px; padding: clamp(6px, 2vw, 8px); font-size: clamp(0.8rem, 2vw, 1rem);">
+                        <div style="flex: 1; text-align: left; color: white; font-weight: bold; min-width: clamp(80px, 20vw, 120px); word-break: break-word;">${player.name}</div>
+                        <div style="flex: 2; margin: 0 clamp(5px, 2vw, 10px);">
+                            <div style="background: rgba(255,255,255,0.2); height: clamp(16px, 3vw, 20px); border-radius: 10px; overflow: hidden;">
                                 <div style="height: 100%; background: ${color}; width: ${probability}%; transition: width 0.5s ease; border-radius: 10px;"></div>
                             </div>
                         </div>
-                        <div style="min-width: 80px; text-align: right; color: white; font-weight: bold;">${player.total} pts (${probability}%)</div>
+                        <div style="min-width: clamp(60px, 15vw, 80px); text-align: right; color: white; font-weight: bold; font-size: clamp(0.7rem, 1.5vw, 0.9rem);">${probability}%</div>
                     </div>
                 `;
             }).join('');
@@ -604,10 +690,10 @@ AnotherPlayer
             document.getElementById('winnersHistory').style.display = 'block';
             
             document.getElementById('winnersList').innerHTML = winners.map(winner => `
-                <div style="display: flex; align-items: center; margin: 8px 0; background: rgba(255,215,0,0.2); border-radius: 10px; padding: 12px; border: 2px solid #FFD700;">
-                    <div style="flex: 0 0 40px; text-align: center; color: #FFD700; font-weight: bold; font-size: 18px;">#${winner.drawNumber}</div>
-                    <div style="flex: 1; text-align: left; color: white; font-weight: bold; margin-left: 15px;">${winner.name}</div>
-                    <div style="min-width: 120px; text-align: right; color: white; font-weight: bold;">${winner.points} pts (${winner.winChance}%)</div>
+                <div style="display: flex; align-items: center; margin: 6px 0; background: rgba(255,215,0,0.2); border-radius: 10px; padding: clamp(8px, 2vw, 12px); border: 2px solid #FFD700; font-size: clamp(0.85rem, 2vw, 1rem);">
+                    <div style="flex: 0 0 clamp(30px, 8vw, 40px); text-align: center; color: #FFD700; font-weight: bold; font-size: clamp(1rem, 3vw, 1.2rem);">#${winner.drawNumber}</div>
+                    <div style="flex: 1; text-align: left; color: white; font-weight: bold; margin-left: clamp(10px, 2vw, 15px); word-break: break-word;">${winner.name}</div>
+                    <div style="min-width: clamp(90px, 20vw, 120px); text-align: right; color: white; font-weight: bold; font-size: clamp(0.75rem, 1.8vw, 0.9rem);">${winner.points} pts (${winner.winChance}%)</div>
                 </div>
             `).join('');
         }
