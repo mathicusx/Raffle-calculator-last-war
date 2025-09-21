@@ -987,12 +987,15 @@
           vsPositions[index] = actualName;
         }
 
-        // Focus next input if available
-        const nextPosition = container.children[index + 1];
-        if (nextPosition) {
-          const nextInput = nextPosition.querySelector(".name-input");
-          if (nextInput) {
-            setTimeout(() => nextInput.focus(), 100);
+        // Focus next input if available (but not on mobile to prevent keyboard closing)
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (!isMobile) {
+          const nextPosition = container.children[index + 1];
+          if (nextPosition) {
+            const nextInput = nextPosition.querySelector(".name-input");
+            if (nextInput) {
+              setTimeout(() => nextInput.focus(), 100);
+            }
           }
         }
       }
